@@ -1,4 +1,4 @@
 export interface CategoriaDTO {
-    cdCategoria : string;
-    dsCategoria : string;
+    id : string;
+    nome : string;
 }

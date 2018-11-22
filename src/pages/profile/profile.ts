@@ -24,8 +24,8 @@ export class ProfilePage {
 
   ionViewDidLoad() {
     let localUser = this.storage.getLocalUser();
-    if (localUser && localUser.dsEmail) {
-      this.clienteService.findByDsEmail(localUser.dsEmail)
+    if (localUser && localUser.email) {
+      this.clienteService.findByEmail(localUser.email)
         .subscribe(response => {
           this.cliente = response;
           this.getImageIfExists();
@@ -42,9 +42,9 @@ export class ProfilePage {
   }
 
   getImageIfExists() {
-    this.clienteService.getImageFromBucket(this.cliente.cdCliente)
+    this.clienteService.getImageFromBucket(this.cliente.id)
     .subscribe(response => {
-      this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.cdCliente}.jpg`;
+      this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.id}.jpg`;
     },
     error => {});
   }

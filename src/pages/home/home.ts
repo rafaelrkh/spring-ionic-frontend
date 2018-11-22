@@ -11,8 +11,8 @@ import { AuthService } from '../../services/auth.service';
 export class HomePage {
 
   credencial : CredenciaisDTO = {
-    dsEmail: "",
-    dsSenha: ""
+    email: "",
+    senha: ""
   };
 
   constructor(public navCtrl: NavController, 

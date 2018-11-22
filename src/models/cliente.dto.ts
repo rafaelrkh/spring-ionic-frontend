@@ -1,6 +1,6 @@
 export interface ClienteDTO{
-    cdCliente : string;
-    dsNome : string;
-    dsEmail: string;
+    id : string;
+    nome : string;
+    email: string;
     imageUrl? : string;
 }
