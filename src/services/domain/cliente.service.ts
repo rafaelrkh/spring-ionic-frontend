@@ -8,6 +8,8 @@ import { StorageService } from "../storage.service";
 @Injectable()
 export class ClienteService{
 
+    bucketUrl: string = API_CONFIG.bucketBaseUrl;
+
     constructor(public http: HttpClient, public storage: StorageService) {
     }
 
