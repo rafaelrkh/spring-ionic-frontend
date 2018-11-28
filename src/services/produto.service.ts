@@ -8,13 +8,19 @@ import { ProdutoDTO } from '../models/produto.dto';
 export class ProdutoService {
 
    constructor(public http: HttpClient) {
+
   }
 
-
+  //Pesquisa por id
   findById(produto_id : string){
     return this.http.get<ProdutoDTO>(`${API_CONFIG.baseUrl}/produtos/${produto_id}`);
   }
-
+  //Pesquisa por nome
+  findByNome(nome: string){
+   // return this.http.get(`${API_CONFIG.baseUrl}/produtos/nome/${nome}`);
+    return this.http.get(`${API_CONFIG.baseUrl}/produtos/nm/?nome=${nome}`); 
+  }
+  
    findByCategoria(categoria_id : string) {
     return this.http.get(`${API_CONFIG.baseUrl}/produtos/?categorias=${categoria_id}`);
   }

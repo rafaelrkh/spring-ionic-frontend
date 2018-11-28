@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CategoriaService } from '../../services/domain/categoria.service';
 import { CategoriaDTO } from '../../models/categoria.dto';
 import { API_CONFIG } from '../../config/api.config';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 /**
  * Generated class for the CategoriasPage page.
@@ -22,11 +23,21 @@ export class CategoriasPage {
 
   items: CategoriaDTO[];
 
+  formGroup: FormGroup;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    public categoriaService: CategoriaService) {
+    public categoriaService: CategoriaService,
+    public formBuilder: FormBuilder) {
+
+      this.formGroup = this.formBuilder.group({
+        nome: ['',[]]});
+      
+      
   }
+
+  
 
   ionViewDidLoad() {
 
@@ -41,6 +52,11 @@ export class CategoriasPage {
 
   showProdutos(categoria_id : string){
     this.navCtrl.push('ProdutosPage', {categoria_id: categoria_id});
+  }
+
+  showProdutosNome(){
+    let nome = this.formGroup.value.nome;
+    this.navCtrl.push('ProdutosPage', {nome : nome});
   }
 
 }

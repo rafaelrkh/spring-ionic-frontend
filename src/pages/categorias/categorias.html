@@ -17,6 +17,15 @@
     </ion-fab>
 
     <ion-list>
+        <form [formGroup]="formGroup" (ngSubmit)="showProdutosNome(); $event.preventDefault()">
+        <ion-item>
+            <ion-input formControlName="nome" placeholder="Digite o nome do produto..." type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <button ion-button block type="submit" [disabled]="formGroup.invalid">Pesquisar</button>
+        </ion-item>
+        </form>
+        
 
         <button ion-item *ngFor="let item of items" (click)="showProdutos(item.id)">
 
