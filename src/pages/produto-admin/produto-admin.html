@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Produtos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <button ion-button center color="secondary" (click)="novoProduto()">Novo Produto</button>
+
+        <form (ngSubmit)="showProdutosNome()">
+          <ion-item>
+            <ion-input  [(ngModel)]="produto.nome" placeholder="Digite o nome do produto..." name="nome" type="text"> </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <button ion-button block type="submit">Pesquisar</button>
+          </ion-item>
+        </form>
+           
+        
+        <button ion-item *ngFor="let item of items" (click)="editProduto()">
+          <button ion-button (click)="excluir(item.nome, item.id)">Editar</button>
+          <button ion-button color="danger" (click)="excluir(item.id)">Excluir</button>
+            <ion-thumbnail item-start>
+  
+              <img src="../../assets//imgs/prod.jpg">
+  
+            </ion-thumbnail>
+  
+            <h2> {{ item?.nome }} </h2>
+  
+        </button>
+
+      </ion-list>
+
+</ion-content>

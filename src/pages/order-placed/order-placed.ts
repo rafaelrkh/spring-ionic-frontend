@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { API_CONFIG } from '../../config/api.config';
 import { PedidoDTO } from '../../models/pedido.dto';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -35,6 +35,7 @@ export class OrderPlacedPage {
     public pedidoService: PedidoService,
     public formBuilder: FormBuilder,
     public clienteService: ClienteService,
+    private alertCtrl: AlertController,
     public storage: StorageService) {
 
   }
@@ -52,7 +53,28 @@ export class OrderPlacedPage {
            .subscribe(response => {
 
             this.items = response['content'];
+
             console.log(this.items);
+
+            //let position
+
+            if(this.items.length <= 2){
+              let alert2 = this.alertCtrl.create({
+                title: 'Meus pedidos',
+                message: 'Atenção, ' + this.cliente.nome +"! Você não possui pedidos realizados!",
+                buttons:[
+                  {
+                    text: 'OK',
+                    role: 'ok',
+                    handler: data => {
+                    }
+                  }
+                ]
+              });
+
+              alert2.present();
+            }
+            
             
            }, error => {});
 

@@ -1,0 +1,43 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Relatório de Histórico de Estoque</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <form (ngSubmit)="geraRelatorio(instanteIni, instanteFim)">
+        <ion-item>
+            <ion-label>De:</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" name="instanteIni" [(ngModel)]="historico.instante">
+            </ion-datetime>
+        </ion-item>
+    
+          <ion-item>
+            <ion-label>Até:</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" name="instanteFim" [(ngModel)]="historico.instante_fim">
+            </ion-datetime>
+          </ion-item>
+
+        <ion-item>
+          <button ion-button block type="submit">Pesquisar</button>
+        </ion-item>
+      </form>
+
+      <button ion-item *ngFor="let item of items">
+            <ion-thumbnail item-start>
+  
+              <img src="../../assets//imgs/prod.jpg">
+  
+            </ion-thumbnail>
+  
+            <h2> {{ historico?.id }} </h2>
+  
+        </button>
+
+      </ion-list>
+
+</ion-content>

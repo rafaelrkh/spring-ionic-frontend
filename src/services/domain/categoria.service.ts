@@ -14,4 +14,9 @@ export class CategoriaService{
     findAll() : Observable<CategoriaDTO[]> {
         return this.http.get<CategoriaDTO[]>(`${API_CONFIG.baseUrl}/categorias`);
     }
+
+  //Pesquisa por nome
+  findByNome(nome: string){    
+     return this.http.get(`${API_CONFIG.baseUrl}/categorias/nm/?nome=${nome}`); 
+   }
 }

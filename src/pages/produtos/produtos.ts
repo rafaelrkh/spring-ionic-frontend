@@ -53,7 +53,7 @@ export class ProdutosPage {
       .subscribe(response => {
         this.items = response['content']
 
-        console.log(this.items);
+        
         loader.dismiss();
 
         if(this.items != null){
