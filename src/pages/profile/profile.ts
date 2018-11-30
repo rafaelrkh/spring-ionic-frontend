@@ -85,9 +85,9 @@ export class ProfilePage {
            .subscribe(response =>{
               
                this.pedidos = response['content'];
-
+              console.log('Pedidos: ' + this.pedidos.length);
                //Se a variavel que recebe os pedidos não estiver nula, o cliente possui pedidos..
-                if(this.pedidos.length > 2){ //Se pedidos retornou um valor maior do que 2, significa que retornou um resultado concreto.
+                if(this.pedidos.length >= 1){ //Se pedidos retornou um valor maior do que 2, significa que retornou um resultado concreto.
                   //Retorna para página de login
                   let alert2 = this.alertCtrl.create({
                     title: 'Excluir cadastro',

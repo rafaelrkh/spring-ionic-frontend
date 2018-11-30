@@ -27,6 +27,7 @@ export class ProfileEditPage {
   cidades: CidadeDTO[]
   formGroup: FormGroup;
   cliente: ClienteDTO;
+  clienteup : ClienteDTO;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -113,6 +114,16 @@ export class ProfileEditPage {
   }
 
   updateUser(){
+    let localUser = this.storage.getLocalUser();
+    //Pegando o ID do cliente
+    if (localUser && localUser.email) { 
+      this.clienteService.findByEmail(localUser.email)
+          .subscribe(response => {
+          this.clienteup = response as ClienteDTO;
+            this.cliente.id = this.clienteup.id;
+          }, errors => {});
+
+          
      //Passando o cliente registrado para a alteração
      this.clienteService.update(this.cliente);
 
@@ -125,6 +136,7 @@ export class ProfileEditPage {
 
       //Após à alteração, informa  mensagem com sucesso e retorna a página de perfil
       this.navCtrl.setRoot('ProfilePage');
+    }
   }
 
 }

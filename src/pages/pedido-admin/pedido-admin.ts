@@ -9,16 +9,16 @@ import { PedidoDTO } from '../../models/pedido.dto';
   selector: 'page-pedido-admin',
   templateUrl: 'pedido-admin.html',
 })
-export class HistoricoEstoqueAdminPage {
+export class PedidoAdminPage {
 
   
    historico: PedidoDTO ={
-    cliente : "";
-    enderecoDeEntrega: "";
-    pagamento: "";
-    itens: null;
-    id: "";
-    instante: "";
+    cliente : null,
+    enderecoDeEntrega: null,
+    pagamento: null,
+    itens: null,
+    id: "",
+    instante: "",
   };
 
   items: PedidoDTO[];

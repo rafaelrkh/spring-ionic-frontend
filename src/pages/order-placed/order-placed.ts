@@ -54,11 +54,10 @@ export class OrderPlacedPage {
 
             this.items = response['content'];
 
-            console.log(this.items);
-
+            
             //let position
-
-            if(this.items.length <= 2){
+            console.log('ITens: ' + this.items.length);
+            if(this.items.length < 1){
               let alert2 = this.alertCtrl.create({
                 title: 'Meus pedidos',
                 message: 'Atenção, ' + this.cliente.nome +"! Você não possui pedidos realizados!",

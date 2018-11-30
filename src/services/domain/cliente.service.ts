@@ -4,11 +4,13 @@ import { API_CONFIG } from "../../config/api.config";
 import { ClienteDTO } from "../../models/cliente.dto";
 import { Observable } from "rxjs/Rx";
 import { StorageService } from "../storage.service";
+import { LocalUser } from "../../models/local_user";
 
 @Injectable()
 export class ClienteService{
 
     bucketUrl: string = API_CONFIG.bucketBaseUrl;
+    localUser: LocalUser;
 
     constructor(public http: HttpClient, public storage: StorageService) {
     }
@@ -39,11 +41,49 @@ export class ClienteService{
     }
     //Implementando a exclusão por ID
    delete(id: string){
-    return this.http.delete(`${API_CONFIG.baseUrl}/clientes/${id}`);
+     /*  console.log('ID service: '+ id);
+
+       let url = API_CONFIG.baseUrl + '/clientes/' + id;
+
+       return this.http.delete(url); */
+       return new Promise((resolve, reject) => {
+        let url = API_CONFIG.baseUrl + '/clientes/' + id;
+   
+        this.http.delete(url)
+          .subscribe((result: any) => {
+           // resolve(result.json());
+          },
+          (error) => {
+            reject(error.json());
+          });
+      });
    }
    //Implementando a alteração por ID
    update(cliente: ClienteDTO){
-    return this.http.put(`${API_CONFIG.baseUrl}/clientes/${cliente}`, null,null);
+    /*
+    let dados = {
+        "nome": cliente.nome
+    } ;
+
+    return this.http.put(`${API_CONFIG.baseUrl}/clientes/${cliente}`,dados);
+      */
+     console.log("ID CLIENTE: " + cliente.id);
+     return new Promise((resolve, reject) => {
+        let url = API_CONFIG.baseUrl + '/clientes/' + cliente.id;
+        
+        let dados = {
+          "nome": cliente.nome,
+          "email": cliente.email
+        }
+        
+        this.http.put(url, dados)
+          .subscribe((result: any) => {
+           // resolve(result.json());
+          },
+          (error) => {
+            reject(error.json());
+          });
+      }); 
    }
 
 }
